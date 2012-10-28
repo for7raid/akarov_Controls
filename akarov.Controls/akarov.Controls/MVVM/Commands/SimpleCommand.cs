@@ -9,7 +9,7 @@ namespace akarov.Controls.MVVM.Commands
     /// <summary>
     /// Implements the ICommand and wraps up all the verbose stuff so that you can just pass 2 delegates 1 for the CanExecute and one for the Execute
     /// </summary>
-    public class SimpleCommand<T> : ICommand
+    public class SimpleCommand<T> : ICommand where T: class
     {
         /// <summary>
         /// Gets or sets the Predicate to execute when the CanExecute of the command gets called
@@ -77,17 +77,17 @@ namespace akarov.Controls.MVVM.Commands
         /// <summary>
         /// Gets or sets the action to be called when the Execute method of the command gets called
         /// </summary>
-        public Action ExecuteDelegate { get; set; }
+        public Action<object> ExecuteDelegate { get; set; }
 
         #region ICommand Members
 
-        public SimpleCommand(Action ExecuteDelegate)
+        public SimpleCommand(Action<object> ExecuteDelegate)
             : this(ExecuteDelegate, null)
         {
 
         }
 
-        public SimpleCommand(Action ExecuteDelegate, Predicate<object> CanExecuteDelegate)
+        public SimpleCommand(Action<object> ExecuteDelegate, Predicate<object> CanExecuteDelegate)
         {
             if (ExecuteDelegate == null)
                 throw new ArgumentNullException("ExecuteDelegate");
@@ -103,7 +103,7 @@ namespace akarov.Controls.MVVM.Commands
         public bool CanExecute(Object parameter)
         {
             if (CanExecuteDelegate != null)
-                return CanExecuteDelegate(null);
+                return CanExecuteDelegate(parameter);
             return true;// if there is no can execute default to true
         }
 
@@ -120,7 +120,7 @@ namespace akarov.Controls.MVVM.Commands
         public void Execute(object parameter)
         {
             if (ExecuteDelegate != null && CanExecute(parameter))
-                ExecuteDelegate();
+                ExecuteDelegate(parameter);
         }
 
         #endregion
