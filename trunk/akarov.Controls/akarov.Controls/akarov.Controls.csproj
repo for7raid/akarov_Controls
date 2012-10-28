@@ -59,6 +59,9 @@
       <DependentUpon>ShowException.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Commands\SimpleCommand.cs" />
+    <Compile Include="MVVM\Converters\BoolenToVisibilityConverter.cs" />
+    <Compile Include="MVVM\Converters\Converters.cs" />
+    <Compile Include="MVVM\Converters\InvertorConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -73,6 +76,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Utils\AssemblyAttributes.cs" />
+    <Compile Include="Utils\SingleInstance.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -89,6 +93,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

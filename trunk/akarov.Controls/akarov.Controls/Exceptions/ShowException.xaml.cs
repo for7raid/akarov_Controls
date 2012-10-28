@@ -30,7 +30,7 @@ namespace akarov.Controls.Exceptions
             get
             {
 
-                return new MVVM.Commands.SimpleCommand(() => { Copy(); });
+                return new MVVM.Commands.SimpleCommand(_ => { Copy(); });
             }
         }
 
@@ -39,7 +39,7 @@ namespace akarov.Controls.Exceptions
             get
             {
 
-                return new MVVM.Commands.SimpleCommand(() => { this.Close(); });
+                return new MVVM.Commands.SimpleCommand(_ => { this.Close(); });
             }
         }
 

@@ -11,6 +11,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using akarov.Controls.Utils;
 
 namespace akarov.Controls.Test
 {
@@ -19,25 +22,40 @@ namespace akarov.Controls.Test
     /// </summary>
     public partial class MainWindow : Window
     {
+        [DllImportAttribute("User32.dll")]
+        private static extern int SetForegroundWindow(IntPtr hWnd);
+
+        public bool IsTrue { get { return true; } }
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                int i = 10;
-                int b = 0;
-                int t = i / b;
-            }
-            catch (Exception ex)
-            {
 
-                akarov.Controls.Exceptions.ShowException.Show(ex);
-            }
+           
 
+            SingleInstance.SendMessage("hello");
+
+
+        }
+
+        void SingleInstance_MessageReceiveFromOtherInstance(string message)
+        {
+            MessageBox.Show(message);
+        }
+
+        private void register_Click(object sender, RoutedEventArgs e)
+        {
+            SingleInstance.ListenFromOtherInstance(SingleInstance_MessageReceiveFromOtherInstance);
+        }
+
+        private void activate_Click(object sender, RoutedEventArgs e)
+        {
+            SingleInstance.ActivatePreviousInstance();
         }
     }
 }
