@@ -29,6 +29,10 @@ namespace akarov.Controls.Utils
             if (otherProcesses.Length > 1)
             {
                 proc = otherProcesses.First(p => p.Id != proc.Id);
+                
+                if (proc == null)
+                    return false;
+
                 return SetForegroundWindow(proc.MainWindowHandle) > 0;
             }
             else
@@ -86,12 +90,13 @@ namespace akarov.Controls.Utils
                     namedPipeStreamASynch.Disconnect();
                    
                 }
+
                 namedPipeStreamASynch =
                   new NamedPipeServerStream(PipeName, PipeDirection.In, 1, PipeTransmissionMode.Message, PipeOptions.Asynchronous);
                 namedPipeStreamASynch.BeginWaitForConnection(PipeAsyncCallback, null);
 
-                //Dispatcher.CurrentDispatcher.BeginInvoke(messageCallback, message);
-                messageCallback.Invoke(message);
+                Dispatcher.CurrentDispatcher.Invoke(messageCallback, message);
+                //messageCallback.Invoke(message);
                 //messageCallback(message);
             }
             catch (Exception ex)
