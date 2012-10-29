@@ -57,5 +57,10 @@ namespace akarov.Controls.Test
         {
             SingleInstance.ActivatePreviousInstance();
         }
+
+        private void registerExt_Click(object sender, RoutedEventArgs e)
+        {
+            FileAssotiation.AssotiateExtention(".frtx");
+        }
     }
 }

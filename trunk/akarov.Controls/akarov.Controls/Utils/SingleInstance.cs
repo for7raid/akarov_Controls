@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.IO.Pipes;
 using System.IO;
 using System.Windows.Threading;
+using System.Windows;
 
 namespace akarov.Controls.Utils
 {
@@ -29,7 +30,7 @@ namespace akarov.Controls.Utils
             if (otherProcesses.Length > 1)
             {
                 proc = otherProcesses.First(p => p.Id != proc.Id);
-                
+
                 if (proc == null)
                     return false;
 
@@ -41,7 +42,8 @@ namespace akarov.Controls.Utils
 
         public static bool IsFirstInstance
         {
-            get {
+            get
+            {
 
                 try
                 {
@@ -59,6 +61,7 @@ namespace akarov.Controls.Utils
             }
         }
 
+        
         static NamedPipeServerStream namedPipeStreamASynch;
         static Action<string> messageCallback;
         public static void ListenFromOtherInstance(Action<string> callback)
@@ -73,9 +76,10 @@ namespace akarov.Controls.Utils
             catch (Exception ex)
             {
 
-                throw new Exception("Не могу зарегистрировать слушателя. Вероятно запущено больше одного приложения!",ex);
+                throw new Exception("Не могу зарегистрировать слушателя. Вероятно запущено больше одного приложения!", ex);
             }
         }
+
 
 
         private static void PipeAsyncCallback(IAsyncResult resultAsynch)
@@ -88,16 +92,21 @@ namespace akarov.Controls.Utils
                 {
                     message = streamReader.ReadToEnd().Replace("\0", "");
                     namedPipeStreamASynch.Disconnect();
-                   
+
                 }
 
                 namedPipeStreamASynch =
                   new NamedPipeServerStream(PipeName, PipeDirection.In, 1, PipeTransmissionMode.Message, PipeOptions.Asynchronous);
                 namedPipeStreamASynch.BeginWaitForConnection(PipeAsyncCallback, null);
 
-                Dispatcher.CurrentDispatcher.Invoke(messageCallback, message);
-                //messageCallback.Invoke(message);
-                //messageCallback(message);
+                if (messageCallback.Target is DependencyObject)
+                {
+                    var taret = messageCallback.Target as DependencyObject;
+                    taret.Dispatcher.Invoke(messageCallback, message);
+                }
+                else
+                    messageCallback.Invoke(message);
+
             }
             catch (Exception ex)
             {
@@ -109,11 +118,11 @@ namespace akarov.Controls.Utils
 
         public static void SendMessage(string message)
         {
-            using (var namedPipeClientStream = new NamedPipeClientStream(".",PipeName, PipeDirection.Out, PipeOptions.Asynchronous))
+            using (var namedPipeClientStream = new NamedPipeClientStream(".", PipeName, PipeDirection.Out, PipeOptions.Asynchronous))
             {
                 try
                 {
-                    
+
                     namedPipeClientStream.Connect(10);
                     var bytes = Encoding.Unicode.GetBytes(message);
                     namedPipeClientStream.Write(bytes, 0, bytes.Length);

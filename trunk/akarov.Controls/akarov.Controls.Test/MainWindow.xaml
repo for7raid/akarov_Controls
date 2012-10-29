@@ -8,6 +8,7 @@
              <Button Click="register_Click">register</Button>
             <Button Click="Button_Click">send</Button>
             <Button Click="activate_Click">activate</Button>
+            <Button Click="registerExt_Click">registerExt</Button>
         </StackPanel>
        
     </Grid>

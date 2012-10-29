@@ -76,6 +76,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Utils\AssemblyAttributes.cs" />
+    <Compile Include="Utils\FileAssotiation.cs" />
     <Compile Include="Utils\SingleInstance.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
