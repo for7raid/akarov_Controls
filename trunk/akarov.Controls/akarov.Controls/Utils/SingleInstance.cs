@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.IO.Pipes;
 using System.IO;
-using System.Windows.Threading;
-using System.Windows;
 
 namespace akarov.Controls.Utils
 {
@@ -99,12 +96,12 @@ namespace akarov.Controls.Utils
                   new NamedPipeServerStream(PipeName, PipeDirection.In, 1, PipeTransmissionMode.Message, PipeOptions.Asynchronous);
                 namedPipeStreamASynch.BeginWaitForConnection(PipeAsyncCallback, null);
 
-                if (messageCallback.Target is DependencyObject)
-                {
-                    var taret = messageCallback.Target as DependencyObject;
-                    taret.Dispatcher.Invoke(messageCallback, message);
-                }
-                else
+                //if (messageCallback.Target is DependencyObject)
+                //{
+                //    var taret = messageCallback.Target as DependencyObject;
+                //    taret.Dispatcher.Invoke(messageCallback, message);
+                //}
+                //else
                     messageCallback.Invoke(message);
 
             }

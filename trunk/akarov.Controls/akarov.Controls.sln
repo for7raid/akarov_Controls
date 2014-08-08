@@ -1,24 +1,26 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "akarov.Controls", "akarov.Controls\akarov.Controls.csproj", "{ACFCC8DE-8FDD-4993-910C-3E525460DE19}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "akarov.Controls.Test", "akarov.Controls.Test\akarov.Controls.Test.csproj", "{E1C4FFE8-6CB9-4764-902C-38256D05022F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "akarov.controls.wpf", "akarov.controls.wpf\akarov.controls.wpf.csproj", "{AC5CFF10-F2C5-4DDC-863A-B46D1F939D94}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x86 = Debug|x86
-		Release|x86 = Release|x86
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{ACFCC8DE-8FDD-4993-910C-3E525460DE19}.Debug|x86.ActiveCfg = Debug|x86
-		{ACFCC8DE-8FDD-4993-910C-3E525460DE19}.Debug|x86.Build.0 = Debug|x86
-		{ACFCC8DE-8FDD-4993-910C-3E525460DE19}.Release|x86.ActiveCfg = Release|x86
-		{ACFCC8DE-8FDD-4993-910C-3E525460DE19}.Release|x86.Build.0 = Release|x86
-		{E1C4FFE8-6CB9-4764-902C-38256D05022F}.Debug|x86.ActiveCfg = Debug|x86
-		{E1C4FFE8-6CB9-4764-902C-38256D05022F}.Debug|x86.Build.0 = Debug|x86
-		{E1C4FFE8-6CB9-4764-902C-38256D05022F}.Release|x86.ActiveCfg = Release|x86
-		{E1C4FFE8-6CB9-4764-902C-38256D05022F}.Release|x86.Build.0 = Release|x86
+		{ACFCC8DE-8FDD-4993-910C-3E525460DE19}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{ACFCC8DE-8FDD-4993-910C-3E525460DE19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACFCC8DE-8FDD-4993-910C-3E525460DE19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1C4FFE8-6CB9-4764-902C-38256D05022F}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{E1C4FFE8-6CB9-4764-902C-38256D05022F}.Release|Any CPU.ActiveCfg = Release|x86
+		{AC5CFF10-F2C5-4DDC-863A-B46D1F939D94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC5CFF10-F2C5-4DDC-863A-B46D1F939D94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC5CFF10-F2C5-4DDC-863A-B46D1F939D94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
