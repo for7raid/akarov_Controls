@@ -85,7 +85,7 @@ namespace akarov.Controls.Exceptions
                 }
             }
 
-            InitializeComponent();
+            //InitializeComponent();
             WindowTitle = "Ошибка";
         }
 
